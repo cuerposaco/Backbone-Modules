@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     /**
-    *  Donwload bower files [for testing]
+    *  Download bower files [for testing]
     */
     bower : {
       install : {
