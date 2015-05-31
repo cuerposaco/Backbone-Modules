@@ -1,3 +1,3 @@
 # Backbone-Modules
 
-Create standalone UMD javascript modules, based on Backbone and nunjuncks as template engine, using browserify.
+Create standalone [UMD](https://github.com/umdjs/umd/) javascript modules, based on [Backbone](http://backbonejs.org/) and [Nunjucks](https://mozilla.github.io/nunjucks/getting-started.html) as template engine, using [Browserify](http://browserify.org/).
