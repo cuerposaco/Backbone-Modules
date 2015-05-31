@@ -1,0 +1,5 @@
+<h4>Hello {{message}}</h4>
+<p><span><strong>{{message|upper|test}}</strong></span>
+<span>Beatae ex quibusdam, modi sed illo consequatur et! Ex neque quasi molestiae voluptates commodi fugiat repudiandae praesentium, officiis quas quidem vel nihil saepe aperiam accusantium, dolore libero obcaecati in quaerat.</span>
+<span>Exercitationem porro hic officiis aut totam, sapiente tempore non ducimus, distinctio inventore eaque, necessitatibus earum velit error ratione minima sunt incidunt accusantium odio provident! Voluptates ipsum, error velit labore assumenda.</span>
+<span>Voluptate, perspiciatis consequatur saepe beatae. Asperiores nemo amet hic veniam adipisci repudiandae aliquid magnam similique dolores accusamus nisi voluptas id ea eaque, et voluptatibus labore placeat. Culpa similique numquam, est.</span></p>

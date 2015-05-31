@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+</head>
+<body>
+	<h1>Testing Modules....</h1>
+	<div id="module1" data-mod="testModule"></div>
+	<div id="module2" data-mod="testModule"></div>
+	<div id="module3" data-mod="testModule"></div>
+	<script src="/public/vendors.min.js"></script>
+	<script src="build/testModule.min.js"></script>
+	<script>
+		$(function(){
+			$('[data-mod]').each(function(){
+				var mod = window[$(this).data('mod')];
+				new mod({el:$(this)});
+			});
+		});
+	</script>
+</body>
+</html>

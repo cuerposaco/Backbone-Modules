@@ -1,0 +1,4 @@
+{% extends './layout.nunj' %}
+{% block content %}
+	{% include './partials/content.nunj' %}
+{% endblock %}

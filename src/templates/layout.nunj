@@ -1,0 +1,7 @@
+<div class="row">
+	<div class="wrapper">
+		{% block content %}
+		<h1>Main content</h1>
+		{% endblock %}
+	</div>
+</div>
