@@ -11,7 +11,7 @@ nunjucks.env.addFilter( 'test', function( test ) {
 
 module.exports = Backbone.View.extend({
 
-	template 	: require('./templates/hello.nunj'),
+	template 	: require('./templates/testTemplate.nunj'),
 	
 	initialize 	: function(options){
 		this.moduleConfig = _.extend({},options);

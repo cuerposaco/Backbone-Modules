@@ -35,8 +35,10 @@ module.exports = function(grunt) {
         separator: ';',
       },
       dist: {
-        src: ['vendor/**/jquery.js','vendor/**/underscore.js','vendor/**/backbone.js','vendor/**/*.js'],
-        dest: '<%= config.testFolder %>/public/vendors.js',
+        files:{
+          '<%= config.testFolder %>/public/vendors.js': ['vendor/**/jquery.js','vendor/**/underscore.js','vendor/**/backbone.js','vendor/**/*.js'],
+          '<%= config.testFolder %>/public/holder.js': ['vendor/**/holder.js'],
+        }
       },
     },
 
@@ -52,7 +54,8 @@ module.exports = function(grunt) {
       },
       module: {
         files: {
-          '<%= config.buildFolder %>/<%= config.moduleName %>.min.js': ['<%= config.buildFolder %>/<%= config.moduleName %>.js']
+          '<%= config.buildFolder %>/<%= config.moduleName %>.min.js': ['<%= config.buildFolder %>/<%= config.moduleName %>.js'],
+          '<%= config.buildFolder %>/<%= config.asyncModuleName %>.min.js': ['<%= config.buildFolder %>/<%= config.asyncModuleName %>.js'],
         }
       }
     },
@@ -129,8 +132,8 @@ module.exports = function(grunt) {
   *  Grunt task
   */
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('server', ['jshint','bower','browserify','connect:server','watch']);
-  grunt.registerTask('build', ['jshint','bower','browserify','concat:dist','uglify']);
+  grunt.registerTask('server', ['jshint','bower','concat:dist','browserify','connect:server','watch']);
+  grunt.registerTask('build', ['jshint','bower','concat:dist','browserify','uglify']);
 
 
 

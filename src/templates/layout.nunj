@@ -1,7 +1,10 @@
-<div class="row">
-	<div class="wrapper">
-		{% block content %}
-		<h1>Main content</h1>
-		{% endblock %}
+<div class="thumbnail">
+	<img data-src="holder.js/350x250?text={{message}}&random=yes" >
+	{% block content %}
+	<div class="caption">
+		<h3>Thumbnail label</h3>
+		<p>...</p>
+		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
 	</div>
+	{% endblock %}
 </div>

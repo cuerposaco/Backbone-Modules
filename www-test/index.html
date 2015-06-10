@@ -3,15 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Test</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<h1>Testing Modules....</h1>
-	<div id="module1" data-mod="testModule"></div>
-	<div id="module2" data-mod="asyncModule"></div>
-	<div id="module3" data-mod="testModule"></div>
+	<div id="container">
+		<h1>Testing Modules....</h1>
+		<div id="module1" class="col-md-4" data-mod="testModule"></div>
+		<div id="module2" class="col-md-4" data-mod="asyncModule"></div>
+		<div id="module3" class="col-md-4" data-mod="testModule"></div>
+	</div>
+
 	<script src="/public/vendors.min.js"></script>
+	<script src="/public/holder.js"></script>
 	<script src="build/testModule.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/curl/0.7.3/curl-for-dojo1.6/curl.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/curl/0.7.3/curl-for-dojo1.6/curl.min.js"></script>
 
 	<script>
 		$(function(){
@@ -25,29 +30,17 @@
 				} else {
 					require([$modName], function(mod){
 						new mod({el:$mod});
+						Holder.run();
 					});
 				}
 			});
 
+			/* Custom require function */
 			function require(modules, callback){
 				curl({
 					baseUrl: '/build'
 				}, modules, callback );	
-			}
-
-			/*curl(["/build/testModule"], function(mod) {
-				$('[data-mod]').each(function(){
-					new mod({el:$(this)});
-				});
-			});*/
-			/*var MyRouter = Backbone.Router.extend({
-			    routes: {
-			        "application/": "somefunc"
-			    }
-			});
-
-			var app = new MyRouter();
-			Backbone.history.start({pushState: true, root: '/'});*/
+			};
 			
 		});
 	</script>
