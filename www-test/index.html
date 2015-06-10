@@ -7,16 +7,48 @@
 <body>
 	<h1>Testing Modules....</h1>
 	<div id="module1" data-mod="testModule"></div>
-	<div id="module2" data-mod="testModule"></div>
+	<div id="module2" data-mod="asyncModule"></div>
 	<div id="module3" data-mod="testModule"></div>
 	<script src="/public/vendors.min.js"></script>
 	<script src="build/testModule.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/curl/0.7.3/curl-for-dojo1.6/curl.min.js"></script>
+
 	<script>
 		$(function(){
+			
 			$('[data-mod]').each(function(){
-				var mod = window[$(this).data('mod')];
-				new mod({el:$(this)});
+				var $mod = $(this);
+				var $modName = $mod.data('mod');
+
+				if( window[$modName]){
+					new window[$modName]({el:$mod});
+				} else {
+					require([$modName], function(mod){
+						new mod({el:$mod});
+					});
+				}
 			});
+
+			function require(modules, callback){
+				curl({
+					baseUrl: '/build'
+				}, modules, callback );	
+			}
+
+			/*curl(["/build/testModule"], function(mod) {
+				$('[data-mod]').each(function(){
+					new mod({el:$(this)});
+				});
+			});*/
+			/*var MyRouter = Backbone.Router.extend({
+			    routes: {
+			        "application/": "somefunc"
+			    }
+			});
+
+			var app = new MyRouter();
+			Backbone.history.start({pushState: true, root: '/'});*/
+			
 		});
 	</script>
 </body>

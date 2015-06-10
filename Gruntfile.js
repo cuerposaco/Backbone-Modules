@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     config: {
       testPort: 3000,
       moduleName:'testModule',
+      asyncModuleName:'asyncModule',
       buildFolder: 'build',
       srcFolder: 'src',
       testFolder: 'www-test'
@@ -72,7 +73,7 @@ module.exports = function(grunt) {
     *  Watch for changes an live reload
     */
     watch: {
-      files: ['<%= jshint.files %>', '<%= config.srcFolder %>/**/*' ],
+      files: ['<%= jshint.files %>', '<%= config.srcFolder %>/**/*', '<%= config.testFolder %>/**/*' ],
       tasks: ['browserify','uglify:module'],
       options:{livereload:true}
     },
@@ -100,13 +101,15 @@ module.exports = function(grunt) {
       module: {
         options: {
           browserifyOptions: {
-            standalone:'<%= config.moduleName %>',
-            debug: true
+            standalone  : '<%= config.moduleName %>',
+            debug       : true
           },
           transform: ['nunjucksify']
         },
-        src: ['<%= config.srcFolder %>/**/*.js', '<%= config.srcFolder %>/templates/**/*.html'],
-        dest: '<%= config.buildFolder %>/<%= config.moduleName %>.js',
+        files:{
+          '<%= config.buildFolder %>/<%= config.moduleName %>.js':['<%= config.srcFolder %>/<%= config.moduleName %>.js'],
+          '<%= config.buildFolder %>/<%= config.asyncModuleName %>.js':['<%= config.srcFolder %>/<%= config.asyncModuleName %>.js'],
+        }
       },
     }
   });
