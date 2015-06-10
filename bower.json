@@ -1,5 +1,5 @@
 {
-  "name": "a3modules",
+  "name": "BBModules",
   "dependencies": {
     "jquery": "~2.1.4",
     "underscore": "~1.8.3",
