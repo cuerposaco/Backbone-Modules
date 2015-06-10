@@ -6,7 +6,7 @@
 var nunjucks = require( 'nunjucks' );
 nunjucks.env = new nunjucks.Environment();
 nunjucks.env.addFilter( 'test', function( test ) {
-    return test+' --- TEST';
+    return test+' (Nunjucks Test Filter)';
 });
 
 module.exports = Backbone.View.extend({

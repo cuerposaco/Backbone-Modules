@@ -1,6 +1,6 @@
 
 <div class="caption">
-	<h3>{{message|upper|test}}</h3>
+	<h3>TestModule - <small>{{message|upper|test}}</small></h3>
 	<p>Módulo Window</p>
 	<p><span>Beatae ex quibusdam, modi sed illo consequatur et! Ex neque quasi molestiae voluptates commodi fugiat repudiandae praesentium, officiis quas quidem vel nihil saepe aperiam accusantium, dolore libero obcaecati in quaerat.</span></p>
 	<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
