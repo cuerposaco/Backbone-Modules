@@ -4,5 +4,6 @@
 		<h3>AsyncModule - <small>{{message}}</small></h3>
 		<p>Módulo asíncrono</p>
 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+		<div id="SubModulo" data-mod="testModule"></div>
 	</div>
 {% endblock %}

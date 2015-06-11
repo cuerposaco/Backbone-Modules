@@ -20,8 +20,11 @@
 
 	<script>
 		$(function(){
-			
-			$('[data-mod]').each(function(){
+			modLoader( $('[data-mod]') );
+		});
+
+		function modLoader(datas){
+			datas.each(function(){
 				var $mod = $(this);
 				var $modName = $mod.data('mod');
 
@@ -41,8 +44,7 @@
 					baseUrl: '/build'
 				}, modules, callback );	
 			};
-			
-		});
+		}
 	</script>
 </body>
 </html>

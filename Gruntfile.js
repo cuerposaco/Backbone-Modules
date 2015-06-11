@@ -107,7 +107,7 @@ module.exports = function(grunt) {
             standalone  : '<%= config.moduleName %>',
             debug       : true
           },
-          transform: ['nunjucksify']
+          transform: ['nunjucksify'],     
         },
         files:{
           '<%= config.buildFolder %>/<%= config.moduleName %>.js':['<%= config.srcFolder %>/<%= config.moduleName %>.js'],
