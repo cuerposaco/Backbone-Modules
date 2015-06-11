@@ -19,7 +19,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/curl/0.7.3/curl-for-dojo1.6/curl.min.js"></script>
 
 	<script>
-		$(function(){
+		$('document').ready(function(){
 			modLoader( $('[data-mod]') );
 		});
 
@@ -27,12 +27,13 @@
 			datas.each(function(){
 				var $mod = $(this);
 				var $modName = $mod.data('mod');
-
 				if( window[$modName]){
-					new window[$modName]({el:$mod});
+					console.log('Window Module ['+$modName+']');
+					window[$modName]({el:$mod});
 				} else {
 					require([$modName], function(mod){
-						new mod({el:$mod});
+						console.log('Async Module ['+$modName+']');
+						mod({el:$mod});
 						Holder.run();
 					});
 				}
@@ -40,11 +41,12 @@
 
 			/* Custom require function */
 			function require(modules, callback){
+				console.log(modules);
 				curl({
 					baseUrl: '/build'
 				}, modules, callback );	
 			};
-		}
+		};
 	</script>
 </body>
 </html>

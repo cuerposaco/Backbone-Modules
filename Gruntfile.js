@@ -53,6 +53,10 @@ module.exports = function(grunt) {
         }
       },
       module: {
+        options:{
+           // the banner is inserted at the top of the output
+           banner: '/*! <%= config.moduleName %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        },
         files: {
           '<%= config.buildFolder %>/<%= config.moduleName %>.min.js': ['<%= config.buildFolder %>/<%= config.moduleName %>.js'],
           '<%= config.buildFolder %>/<%= config.asyncModuleName %>.min.js': ['<%= config.buildFolder %>/<%= config.asyncModuleName %>.js'],

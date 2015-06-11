@@ -9,7 +9,7 @@ nunjucks.env.addFilter( 'test', function( test ) {
     return test+' (Nunjucks Test Filter)';
 });
 
-module.exports = Backbone.View.extend({
+var MOD = Backbone.View.extend({
 
 	template 	: require('./templates/testTemplate.nunj'),
 	
@@ -36,3 +36,8 @@ module.exports = Backbone.View.extend({
 		console.log("[end]",this);
 	},
 });
+
+module.exports = function(opts, pubsub){
+	if(pubsub) opts.pubsub = pubsub;
+	return new MOD(opts)
+};
