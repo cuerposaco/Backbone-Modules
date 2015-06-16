@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
     config: {
       testPort: 3000,
+      livereloadPort: 3101,
       moduleName:'testModule',
       asyncModuleName:'asyncModule',
       buildFolder: 'build',
@@ -82,7 +83,7 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>', '<%= config.srcFolder %>/**/*', '<%= config.testFolder %>/**/*' ],
       tasks: ['browserify','uglify:module'],
-      options:{livereload:true}
+      options:{livereload:'<%= config.livereloadPort %>'}
     },
 
     /**
@@ -93,7 +94,7 @@ module.exports = function(grunt) {
         options: {
           port: '<%= config.testPort %>',
           hostname: '*',
-          livereload:true,
+          livereload:'<%= config.livereloadPort %>',
           open:true,
           base:['<%= config.testFolder %>','./'],
           path: 'http://localhost:<%= config.testPort %>'
@@ -110,8 +111,7 @@ module.exports = function(grunt) {
           browserifyOptions: {
             standalone  : '<%= config.moduleName %>',
             debug       : true
-          },
-          transform: ['nunjucksify'],     
+          }    
         },
         files:{
           '<%= config.buildFolder %>/<%= config.moduleName %>.js':['<%= config.srcFolder %>/<%= config.moduleName %>.js'],

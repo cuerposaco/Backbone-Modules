@@ -25,6 +25,9 @@
     "nunjucks": "^1.3.4",
     "nunjucksify": "^0.2.2"
   },
+  "browserify": {
+    "transform": ["nunjucksify"]
+  },
   "browser": {
     "nunjucks": "nunjucks/browser/nunjucks-slim"
   }

@@ -26,5 +26,5 @@ var MOD = Backbone.View.extend({
 
 module.exports = function(opts, pubsub){
 	if(pubsub) opts.pubsub = pubsub;
-	return new MOD(opts)
+	return new MOD(opts);
 };
