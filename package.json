@@ -29,6 +29,6 @@
     "transform": ["nunjucksify"]
   },
   "browser": {
-    "nunjucks": "nunjucks/browser/nunjucks-slim"
+    "nunjucks": "./nunjucks_browser/nunjucks_browser.js"
   }
 }

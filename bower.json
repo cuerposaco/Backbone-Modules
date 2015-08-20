@@ -4,6 +4,7 @@
     "jquery": "~2.1.4",
     "underscore": "~1.8.3",
     "backbone": "~1.2.0",
-    "holderjs": "~2.8.0"
+    "holderjs": "~2.8.0",
+    "system.js": "~0.18.11"
   }
 }

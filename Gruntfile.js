@@ -9,6 +9,8 @@ module.exports = function(grunt) {
       asyncModuleName:'asyncModule',
       buildFolder: 'build',
       srcFolder: 'src',
+      nodeModulesFolder: 'node_modules',
+      vendorsFolder: 'vendor',
       testFolder: 'www-test'
     },
     
@@ -20,7 +22,7 @@ module.exports = function(grunt) {
     bower : {
       install : {
         options : {
-          targetDir : 'vendor',
+          targetDir : '<%= config.vendorsFolder %>',
           layout : 'byComponent',
           verbose: true,
           cleanup: true
@@ -37,7 +39,14 @@ module.exports = function(grunt) {
       },
       dist: {
         files:{
-          '<%= config.testFolder %>/public/vendors.js': ['vendor/**/jquery.js','vendor/**/underscore.js','vendor/**/backbone.js','vendor/**/*.js'],
+          '<%= config.testFolder %>/public/vendors.js': [
+            '<%= config.nodeModulesFolder %>/nunjucks/browser/nunjucks-slim.js',
+            '<%= config.vendorsFolder %>/**/jquery.js',
+            '<%= config.vendorsFolder %>/**/underscore.js',
+            '<%= config.vendorsFolder %>/**/backbone.js',
+            '<%= config.vendorsFolder %>/**/system.js',
+            //'vendor/**/*.js'
+            ],
           '<%= config.testFolder %>/public/holder.js': ['vendor/**/holder.js'],
         }
       },
@@ -48,16 +57,20 @@ module.exports = function(grunt) {
     *  & bower vendors [for testing]
     */
     uglify: {
+      options:{
+         // the banner is inserted at the top of the output
+         banner   : '/*! <%= config.moduleName %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+         screwIE8 : true,
+         compress: {
+           drop_console: true
+         }
+      },
       vendors: {
         files: {
           '<%= config.testFolder %>/public/vendors.min.js': ['<%= config.testFolder %>/public/vendors.js']
         }
       },
       module: {
-        options:{
-           // the banner is inserted at the top of the output
-           banner: '/*! <%= config.moduleName %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-        },
         files: {
           '<%= config.buildFolder %>/<%= config.moduleName %>.min.js': ['<%= config.buildFolder %>/<%= config.moduleName %>.js'],
           '<%= config.buildFolder %>/<%= config.asyncModuleName %>.min.js': ['<%= config.buildFolder %>/<%= config.asyncModuleName %>.js'],
@@ -115,6 +128,16 @@ module.exports = function(grunt) {
         },
         files:{
           '<%= config.buildFolder %>/<%= config.moduleName %>.js':['<%= config.srcFolder %>/<%= config.moduleName %>.js'],
+        }
+      },
+      asyncModule: {
+        options: {
+          browserifyOptions: {
+            standalone  : '<%= config.asyncModuleName %>',
+            debug       : true
+          }    
+        },
+        files:{
           '<%= config.buildFolder %>/<%= config.asyncModuleName %>.js':['<%= config.srcFolder %>/<%= config.asyncModuleName %>.js'],
         }
       },
@@ -135,7 +158,7 @@ module.exports = function(grunt) {
   /**
   *  Grunt task
   */
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['jshint','bower']);
   grunt.registerTask('server', ['jshint','bower','concat:dist','browserify','connect:server','watch']);
   grunt.registerTask('build', ['jshint','bower','concat:dist','browserify','uglify']);
 

@@ -15,6 +15,7 @@ var MOD = Backbone.View.extend({
 	
 	initialize 	: function(options){
 		this.moduleConfig = _.extend({},options);
+		console.log('testModule');
 		Backbone.on({
 			'custom:change'	: _.bind(this.onCustomChange,this),
 			'custom:start'	: _.bind(this.onCustomStart,this),

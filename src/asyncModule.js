@@ -10,6 +10,7 @@ var MOD = Backbone.View.extend({
 	
 	initialize 	: function(options){
 		if(options){ _.extend(this,options); }
+		console.log('asyncModule');
 		this.render();
 	},
 	render 		: function(){

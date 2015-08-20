@@ -13,13 +13,17 @@
 		<div id="module3" class="col-md-4" data-mod="testModule"></div>
 	</div>
 
-	<script src="/public/vendors.min.js"></script>
+	<script src="/public/vendors.js"></script>
 	<script src="/public/holder.js"></script>
-	<script src="build/testModule.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/curl/0.7.3/curl-for-dojo1.6/curl.min.js"></script>
+	<!--
+	<script src="build/testModule.min.js"></script>
+	-->
 
 	<script>
 		$('document').ready(function(){
+			System.config({
+				baseURL: '/build'
+			});
 			modLoader( $('[data-mod]') );
 		});
 
@@ -28,11 +32,11 @@
 				var $mod = $(this);
 				var $modName = $mod.data('mod');
 				if( window[$modName]){
-					console.log('Window Module ['+$modName+']');
+					//console.log('Window Module ['+$modName+']');
 					window[$modName]({el:$mod});
 				} else {
-					require([$modName], function(mod){
-						console.log('Async Module ['+$modName+']');
+					require($modName, function(mod){
+						//console.log('Async Module ['+$modName+']');
 						mod({el:$mod});
 						Holder.run();
 					});
@@ -40,11 +44,16 @@
 			});
 
 			/* Custom require function */
-			function require(modules, callback){
-				console.log(modules);
-				curl({
-					baseUrl: '/build'
-				}, modules, callback );	
+			function require(moduleName, callback){
+				var modFile = moduleName+'.min.js';
+				System.config({
+				    meta: {
+						modFile : {
+						  format: 'amd'
+						}
+					}
+				});
+				System.import(modFile).then(callback);
 			};
 		};
 	</script>
