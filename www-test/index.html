@@ -15,6 +15,8 @@
 
 	<script src="/public/vendors.js"></script>
 	<script src="/public/holder.js"></script>
+	<script src="build/testModule.min.js"></script>
+
 	<!--
 	<script src="build/testModule.min.js"></script>
 	-->
@@ -28,15 +30,16 @@
 		});
 
 		function modLoader(datas){
+			var startTime = Date.now();
 			datas.each(function(){
 				var $mod = $(this);
 				var $modName = $mod.data('mod');
 				if( window[$modName]){
-					//console.log('Window Module ['+$modName+']');
+					console.log('('+(Date.now()-startTime)+') Modulo en linea --> ['+$modName+']');
 					window[$modName]({el:$mod});
 				} else {
 					require($modName, function(mod){
-						//console.log('Async Module ['+$modName+']');
+						console.log('('+(Date.now()-startTime)+') Modulo asincrono --> ['+$modName+']');
 						mod({el:$mod});
 						Holder.run();
 					});
@@ -49,7 +52,7 @@
 				System.config({
 				    meta: {
 						modFile : {
-						  format: 'amd'
+						  format: 'cjs'
 						}
 					}
 				});
